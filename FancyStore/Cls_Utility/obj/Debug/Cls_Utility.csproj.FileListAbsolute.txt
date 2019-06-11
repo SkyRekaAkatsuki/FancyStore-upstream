@@ -1,0 +1,16 @@
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\bin\Debug\Cls_Utility.dll
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\bin\Debug\Cls_Utility.pdb
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\bin\Debug\DB_Fancy.dll
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\bin\Debug\EntityFramework.dll
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\bin\Debug\DB_Fancy.pdb
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\bin\Debug\DB_Fancy.dll.config
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\bin\Debug\EntityFramework.xml
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\bin\Debug\zh-Hant\EntityFramework.resources.dll
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\bin\Debug\zh-Hant\EntityFramework.SqlServer.resources.dll
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\obj\Debug\Cls_Utility.csprojAssemblyReference.cache
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\obj\Debug\Cls_Utility.csproj.CoreCompileInputs.cache
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\obj\Debug\Cls_Utility.csproj.CopyComplete
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\obj\Debug\Cls_Utility.dll
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\Cls_Utility\obj\Debug\Cls_Utility.pdb

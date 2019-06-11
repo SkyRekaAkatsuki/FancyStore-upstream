@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A9DCCDD6-AED2-451A-8CC6-9EA7F627CEC3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ctr_Customs</RootNamespace>
+    <AssemblyName>Ctr_Customs</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.52">
+      <HintPath>..\packages\Bunifu_UI_v1.52.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Word, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AL_ProductInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AL_ProductInfo.Designer.cs">
+      <DependentUpon>AL_ProductInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="JA_AdminReplayLeft.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JA_AdminReplayLeft.Designer.cs">
+      <DependentUpon>JA_AdminReplayLeft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JA_EmailWindows.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JA_EmailWindows.Designer.cs">
+      <DependentUpon>JA_EmailWindows.cs</DependentUpon>
+    </Compile>
+    <Compile Include="img.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>img.resx</DependentUpon>
+    </Compile>
+    <Compile Include="JA_FavoriteLlis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JA_FavoriteLlis.designer.cs">
+      <DependentUpon>JA_FavoriteLlis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JA_Input.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JA_Input.designer.cs">
+      <DependentUpon>JA_Input.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JA_MemberList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JA_MemberList.designer.cs">
+      <DependentUpon>JA_MemberList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JA_OrderDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JA_OrderDetail.Designer.cs">
+      <DependentUpon>JA_OrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JA_OrdersList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JA_OrdersList.Designer.cs">
+      <DependentUpon>JA_OrdersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JA_OrderDetailList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JA_OrderDetailList.Designer.cs">
+      <DependentUpon>JA_OrderDetailList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="JA_QuestionList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JA_QuestionList.Designer.cs">
+      <DependentUpon>JA_QuestionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SK_RW_CheckList_Item.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_SK_RW_CheckList_Item.Designer.cs">
+      <DependentUpon>UC_SK_RW_CheckList_Item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SK_RW_CheckList_Title.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_SK_RW_CheckList_Title.Designer.cs">
+      <DependentUpon>UC_SK_RW_CheckList_Title.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SK_ShoppingCartTitle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_SK_ShoppingCartTitle.Designer.cs">
+      <DependentUpon>UC_SK_ShoppingCartTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SK_ShoppingItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_SK_ShoppingItem.Designer.cs">
+      <DependentUpon>UC_SK_ShoppingItem.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AL_ProductInfo.resx">
+      <DependentUpon>AL_ProductInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="img.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>img.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JA_AdminReplayLeft.resx">
+      <DependentUpon>JA_AdminReplayLeft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JA_EmailWindows.resx">
+      <DependentUpon>JA_EmailWindows.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JA_FavoriteLlis.resx">
+      <DependentUpon>JA_FavoriteLlis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JA_Input.resx">
+      <DependentUpon>JA_Input.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JA_MemberList.resx">
+      <DependentUpon>JA_MemberList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JA_OrderDetail.resx">
+      <DependentUpon>JA_OrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JA_OrdersList.resx">
+      <DependentUpon>JA_OrdersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JA_OrderDetailList.resx">
+      <DependentUpon>JA_OrderDetailList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JA_QuestionList.resx">
+      <DependentUpon>JA_QuestionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_SK_RW_CheckList_Item.resx">
+      <DependentUpon>UC_SK_RW_CheckList_Item.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_SK_RW_CheckList_Title.resx">
+      <DependentUpon>UC_SK_RW_CheckList_Title.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_SK_ShoppingCartTitle.resx">
+      <DependentUpon>UC_SK_ShoppingCartTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_SK_ShoppingItem.resx">
+      <DependentUpon>UC_SK_ShoppingItem.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cls_Utility\Cls_Utility.csproj">
+      <Project>{01638142-40E6-4C12-AE36-61706EF7D382}</Project>
+      <Name>Cls_Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DB_Fancy\DB_Fancy.csproj">
+      <Project>{5392D1D7-99DD-4BA6-9965-F1C02C0B51CB}</Project>
+      <Name>DB_Fancy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UI_AL_ProductDetail\UI_AL_ProductDetail.csproj">
+      <Project>{1c1d682b-9d4f-411a-80fe-9479947d40d7}</Project>
+      <Name>UI_AL_ProductDetail</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Resources\icons8-collapse-arrow-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-expand-arrow-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-trash-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-trash-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-checked-checkbox-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-indeterminate-checkbox-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-unchecked-checkbox-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-secured-letter-24.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

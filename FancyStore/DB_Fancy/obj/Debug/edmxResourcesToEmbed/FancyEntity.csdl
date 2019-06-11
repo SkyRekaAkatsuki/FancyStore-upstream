@@ -1,0 +1,1071 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FancyStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CategoryLarge">
+    <Key>
+      <PropertyRef Name="CategoryLID" />
+    </Key>
+    <Property Name="CategoryLID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryLName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CategoryMiddles" Relationship="Self.FK_CategoryM_CategoryL" FromRole="CategoryLarge" ToRole="CategoryMiddle" />
+  </EntityType>
+  <EntityType Name="CategoryMiddle">
+    <Key>
+      <PropertyRef Name="CategoryMID" />
+    </Key>
+    <Property Name="CategoryMID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryMName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryLID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CategoryLarge" Relationship="Self.FK_CategoryM_CategoryL" FromRole="CategoryMiddle" ToRole="CategoryLarge" />
+    <NavigationProperty Name="CategorySmalls" Relationship="Self.FK_CategoryS_CategoryM" FromRole="CategoryMiddle" ToRole="CategorySmall" />
+  </EntityType>
+  <EntityType Name="CategorySmall">
+    <Key>
+      <PropertyRef Name="CategorySID" />
+    </Key>
+    <Property Name="CategorySID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategorySName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryMID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CategoryMiddle" Relationship="Self.FK_CategoryS_CategoryM" FromRole="CategorySmall" ToRole="CategoryMiddle" />
+    <NavigationProperty Name="Products" Relationship="FancyStoreModel.FK_Products_CategoryS" FromRole="CategorySmall" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CityCode" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Regions" Relationship="Self.FK_Region_City" FromRole="City" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="ColorID" />
+    </Key>
+    <Property Name="ColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ColorName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="R" Type="Int32" />
+    <Property Name="G" Type="Int32" />
+    <Property Name="B" Type="Int32" />
+    <NavigationProperty Name="ProductColors" Relationship="Self.FK_ProductColor_Color" FromRole="Color" ToRole="ProductColor" />
+  </EntityType>
+  <EntityType Name="DiscountMethod">
+    <Key>
+      <PropertyRef Name="DiscountID" />
+    </Key>
+    <Property Name="DiscountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiscountName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RangeAmountFrom" Type="Int32" Nullable="false" />
+    <Property Name="RangeAmountTo" Type="Int32" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrderHeaders" Relationship="Self.FK_Orders_DiscountMethod" FromRole="DiscountMethod" ToRole="OrderHeader" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployeePassword" Type="Binary" MaxLength="32" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="GUID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+    <Property Name="VerificationCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="RegionID" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TaxID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Admin" Type="Boolean" Nullable="false" />
+    <Property Name="PhotoID" Type="Int32" />
+    <Property Name="Enabled" Type="Boolean" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Photo" Relationship="Self.FK_Employee_Photo" FromRole="Employee" ToRole="Photo" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
+    <NavigationProperty Name="Region" Relationship="Self.FK_Employees_Region" FromRole="Employee" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="EvaluationSample">
+    <Key>
+      <PropertyRef Name="EvaluationID" />
+    </Key>
+    <Property Name="EvaluationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="KeyWord">
+    <Key>
+      <PropertyRef Name="KeywordID" />
+    </Key>
+    <Property Name="KeywordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Keyword1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="MyFavorite">
+    <Key>
+      <PropertyRef Name="FavoriteID" />
+    </Key>
+    <Property Name="FavoriteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_MyFavorite_Users" FromRole="MyFavorite" ToRole="User" />
+    <NavigationProperty Name="Product" Relationship="FancyStoreModel.FK_MyFavorite_Products" FromRole="MyFavorite" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="NewsList">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Name="NewsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NewsDate" Type="DateTime" Precision="3" />
+    <Property Name="NewContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhotoID" Type="Int32" />
+    <NavigationProperty Name="Photo" Relationship="Self.FK_News_Photo" FromRole="NewsList" ToRole="Photo" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderDetailID" />
+    </Key>
+    <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductColorID" Type="Int32" Nullable="false" />
+    <Property Name="ProductSizeID" Type="Int32" Nullable="false" />
+    <Property Name="UnitPrice" Type="Int32" Nullable="false" />
+    <Property Name="OrderQTY" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ProductColor" Relationship="Self.FK_OrderDetail_ProductColor" FromRole="OrderDetail" ToRole="ProductColor" />
+    <NavigationProperty Name="ProductSize" Relationship="Self.FK_OrderDetail_ProductSize" FromRole="OrderDetail" ToRole="ProductSize" />
+    <NavigationProperty Name="OrderHeader" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetail" ToRole="OrderHeader" />
+    <NavigationProperty Name="Product" Relationship="FancyStoreModel.FK_OrderDetails_Products" FromRole="OrderDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="OrderHeader">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ShipDate" Type="DateTime" Precision="3" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="PayMethodID" Type="Int32" Nullable="false" />
+    <Property Name="ShippingID" Type="Int32" Nullable="false" />
+    <Property Name="DiscountID" Type="Int32" Nullable="false" />
+    <Property Name="OrderStatusID" Type="Int32" Nullable="false" />
+    <Property Name="OrderAmount" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="DiscountMethod" Relationship="Self.FK_Orders_DiscountMethod" FromRole="OrderHeader" ToRole="DiscountMethod" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderHeader" ToRole="OrderDetail" />
+    <NavigationProperty Name="PayMethod" Relationship="Self.FK_Orders_PayMethod" FromRole="OrderHeader" ToRole="PayMethod" />
+    <NavigationProperty Name="Shipping" Relationship="Self.FK_Orders_Shipping" FromRole="OrderHeader" ToRole="Shipping" />
+    <NavigationProperty Name="OrderStatusList" Relationship="Self.FK_Orders_Status" FromRole="OrderHeader" ToRole="OrderStatusList" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Orders_Users" FromRole="OrderHeader" ToRole="User" />
+    <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Orders" FromRole="OrderHeader" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="OrderStatusList">
+    <Key>
+      <PropertyRef Name="OrderStatusID" />
+    </Key>
+    <Property Name="OrderStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrderHeaders" Relationship="Self.FK_Orders_Status" FromRole="OrderStatusList" ToRole="OrderHeader" />
+  </EntityType>
+  <EntityType Name="PayMethod">
+    <Key>
+      <PropertyRef Name="PayMethodID" />
+    </Key>
+    <Property Name="PayMethodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PayMethodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrderHeaders" Relationship="Self.FK_Orders_PayMethod" FromRole="PayMethod" ToRole="OrderHeader" />
+    <Property Name="Freight" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="PhotoID" />
+    </Key>
+    <Property Name="PhotoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Photo1" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Photo" FromRole="Photo" ToRole="Employee" />
+    <NavigationProperty Name="NewsLists" Relationship="Self.FK_News_Photo" FromRole="Photo" ToRole="NewsList" />
+    <NavigationProperty Name="ProductPhotoes" Relationship="Self.FK_ProductPhoto_Photo" FromRole="Photo" ToRole="ProductPhoto" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Photo" FromRole="Photo" ToRole="User" />
+  </EntityType>
+  <EntityType Name="ProductColor">
+    <Key>
+      <PropertyRef Name="ProductColorID" />
+    </Key>
+    <Property Name="ProductColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ColorID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="PhotoID" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Color" Relationship="Self.FK_ProductColor_Color" FromRole="ProductColor" ToRole="Color" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_ProductColor" FromRole="ProductColor" ToRole="OrderDetail" />
+    <NavigationProperty Name="ProductStocks" Relationship="Self.FK_ProductStock_ProductColor" FromRole="ProductColor" ToRole="ProductStock" />
+    <NavigationProperty Name="Product" Relationship="FancyStoreModel.FK_ProductPhoto_Products" FromRole="ProductColor" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProductEvaluation">
+    <Key>
+      <PropertyRef Name="ProductEvaluationID" />
+    </Key>
+    <Property Name="ProductEvaluationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="EvaluationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Grade" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="FancyStoreModel.FK_ProductEvaluation_Products" FromRole="ProductEvaluation" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProductPhoto">
+    <Key>
+      <PropertyRef Name="ProductPhotoID" />
+    </Key>
+    <Property Name="ProductPhotoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="PhotoID" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Photo" Relationship="Self.FK_ProductPhoto_Photo" FromRole="ProductPhoto" ToRole="Photo" />
+    <NavigationProperty Name="Product" Relationship="FancyStoreModel.FK_ProductPhoto_Products1" FromRole="ProductPhoto" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProductSize">
+    <Key>
+      <PropertyRef Name="ProductSizeID" />
+    </Key>
+    <Property Name="ProductSizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SizeID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_ProductSize" FromRole="ProductSize" ToRole="OrderDetail" />
+    <NavigationProperty Name="Size" Relationship="Self.FK_ProductSize_Size" FromRole="ProductSize" ToRole="Size" />
+    <NavigationProperty Name="ProductStocks" Relationship="Self.FK_ProductStock_ProductSize" FromRole="ProductSize" ToRole="ProductStock" />
+    <NavigationProperty Name="Product" Relationship="FancyStoreModel.FK_ProductSize_Products" FromRole="ProductSize" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProductStock">
+    <Key>
+      <PropertyRef Name="StockID" />
+    </Key>
+    <Property Name="StockID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductSizeID" Type="Int32" Nullable="false" />
+    <Property Name="ProductColorID" Type="Int32" Nullable="false" />
+    <Property Name="StockQTY" Type="Int32" Nullable="false" />
+    <Property Name="MinStock" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ProductColor" Relationship="Self.FK_ProductStock_ProductColor" FromRole="ProductStock" ToRole="ProductColor" />
+    <NavigationProperty Name="ProductSize" Relationship="Self.FK_ProductStock_ProductSize" FromRole="ProductStock" ToRole="ProductSize" />
+    <NavigationProperty Name="Product" Relationship="FancyStoreModel.FK_ProductStock_Products" FromRole="ProductStock" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProductWashing">
+    <Key>
+      <PropertyRef Name="ProductWashingID" />
+    </Key>
+    <Property Name="ProductWashingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="WashingID" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Washing" Relationship="Self.FK_ProductWashing_Washing" FromRole="ProductWashing" ToRole="Washing" />
+    <NavigationProperty Name="Product" Relationship="FancyStoreModel.FK_ProductWashing_Products" FromRole="ProductWashing" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Question1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Answer" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="OrderHeader" Relationship="Self.FK_Questions_Orders" FromRole="Question" ToRole="OrderHeader" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Questions_Users" FromRole="Question" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="RegionID" />
+    </Key>
+    <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegionName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CityID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK_Region_City" FromRole="Region" ToRole="City" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Region" FromRole="Region" ToRole="Employee" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Region" FromRole="Region" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Shipping">
+    <Key>
+      <PropertyRef Name="ShippingID" />
+    </Key>
+    <Property Name="ShippingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShippingName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="OrderHeaders" Relationship="Self.FK_Orders_Shipping" FromRole="Shipping" ToRole="OrderHeader" />
+  </EntityType>
+  <EntityType Name="Size">
+    <Key>
+      <PropertyRef Name="SizeID" />
+    </Key>
+    <Property Name="SizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SizeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ProductSizes" Relationship="Self.FK_ProductSize_Size" FromRole="Size" ToRole="ProductSize" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+    </Key>
+    <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Products" Relationship="FancyStoreModel.FK_Products_Supplier" FromRole="Supplier" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="Binary" MaxLength="32" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="GUID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+    <Property Name="VerificationCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="RegionID" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TaxID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Admin" Type="Boolean" Nullable="false" />
+    <Property Name="PhotoID" Type="Int32" />
+    <Property Name="Enabled" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="MyFavorites" Relationship="Self.FK_MyFavorite_Users" FromRole="User" ToRole="MyFavorite" />
+    <NavigationProperty Name="OrderHeaders" Relationship="Self.FK_Orders_Users" FromRole="User" ToRole="OrderHeader" />
+    <NavigationProperty Name="Photo" Relationship="Self.FK_User_Photo" FromRole="User" ToRole="Photo" />
+    <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Users" FromRole="User" ToRole="Question" />
+    <NavigationProperty Name="Region" Relationship="Self.FK_Users_Region" FromRole="User" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="Washing">
+    <Key>
+      <PropertyRef Name="WashingID" />
+    </Key>
+    <Property Name="WashingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WashingName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProductWashings" Relationship="Self.FK_ProductWashing_Washing" FromRole="Washing" ToRole="ProductWashing" />
+  </EntityType>
+  <Association Name="FK_CategoryM_CategoryL">
+    <End Role="CategoryLarge" Type="Self.CategoryLarge" Multiplicity="1" />
+    <End Role="CategoryMiddle" Type="Self.CategoryMiddle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryLarge">
+        <PropertyRef Name="CategoryLID" />
+      </Principal>
+      <Dependent Role="CategoryMiddle">
+        <PropertyRef Name="CategoryLID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoryS_CategoryM">
+    <End Role="CategoryMiddle" Type="Self.CategoryMiddle" Multiplicity="1" />
+    <End Role="CategorySmall" Type="Self.CategorySmall" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryMiddle">
+        <PropertyRef Name="CategoryMID" />
+      </Principal>
+      <Dependent Role="CategorySmall">
+        <PropertyRef Name="CategoryMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Region_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Region" Type="Self.Region" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="Region">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductColor_Color">
+    <End Role="Color" Type="Self.Color" Multiplicity="1" />
+    <End Role="ProductColor" Type="Self.ProductColor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Color">
+        <PropertyRef Name="ColorID" />
+      </Principal>
+      <Dependent Role="ProductColor">
+        <PropertyRef Name="ColorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_DiscountMethod">
+    <End Role="DiscountMethod" Type="Self.DiscountMethod" Multiplicity="1" />
+    <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DiscountMethod">
+        <PropertyRef Name="DiscountID" />
+      </Principal>
+      <Dependent Role="OrderHeader">
+        <PropertyRef Name="DiscountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Photo">
+    <End Role="Photo" Type="Self.Photo" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photo">
+        <PropertyRef Name="PhotoID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PhotoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employees_Region">
+    <End Role="Region" Type="Self.Region" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="RegionID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="RegionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyFavorite_Users">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="MyFavorite" Type="Self.MyFavorite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MyFavorite">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Photo">
+    <End Role="Photo" Type="Self.Photo" Multiplicity="0..1" />
+    <End Role="NewsList" Type="Self.NewsList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photo">
+        <PropertyRef Name="PhotoID" />
+      </Principal>
+      <Dependent Role="NewsList">
+        <PropertyRef Name="PhotoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_ProductColor">
+    <End Role="ProductColor" Type="Self.ProductColor" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductColor">
+        <PropertyRef Name="ProductColorID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductColorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_ProductSize">
+    <End Role="ProductSize" Type="Self.ProductSize" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductSize">
+        <PropertyRef Name="ProductSizeID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductSizeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Orders">
+    <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderHeader">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_PayMethod">
+    <End Role="PayMethod" Type="Self.PayMethod" Multiplicity="1" />
+    <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PayMethod">
+        <PropertyRef Name="PayMethodID" />
+      </Principal>
+      <Dependent Role="OrderHeader">
+        <PropertyRef Name="PayMethodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Shipping">
+    <End Role="Shipping" Type="Self.Shipping" Multiplicity="1" />
+    <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipping">
+        <PropertyRef Name="ShippingID" />
+      </Principal>
+      <Dependent Role="OrderHeader">
+        <PropertyRef Name="ShippingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Status">
+    <End Role="OrderStatusList" Type="Self.OrderStatusList" Multiplicity="1" />
+    <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatusList">
+        <PropertyRef Name="OrderStatusID" />
+      </Principal>
+      <Dependent Role="OrderHeader">
+        <PropertyRef Name="OrderStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="OrderHeader">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Questions_Orders">
+    <End Role="OrderHeader" Type="Self.OrderHeader" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderHeader">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPhoto_Photo">
+    <End Role="Photo" Type="Self.Photo" Multiplicity="0..1" />
+    <End Role="ProductPhoto" Type="Self.ProductPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photo">
+        <PropertyRef Name="PhotoID" />
+      </Principal>
+      <Dependent Role="ProductPhoto">
+        <PropertyRef Name="PhotoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Photo">
+    <End Role="Photo" Type="Self.Photo" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photo">
+        <PropertyRef Name="PhotoID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="PhotoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductStock_ProductColor">
+    <End Role="ProductColor" Type="Self.ProductColor" Multiplicity="1" />
+    <End Role="ProductStock" Type="Self.ProductStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductColor">
+        <PropertyRef Name="ProductColorID" />
+      </Principal>
+      <Dependent Role="ProductStock">
+        <PropertyRef Name="ProductColorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSize_Size">
+    <End Role="Size" Type="Self.Size" Multiplicity="1" />
+    <End Role="ProductSize" Type="Self.ProductSize" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Size">
+        <PropertyRef Name="SizeID" />
+      </Principal>
+      <Dependent Role="ProductSize">
+        <PropertyRef Name="SizeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductStock_ProductSize">
+    <End Role="ProductSize" Type="Self.ProductSize" Multiplicity="1" />
+    <End Role="ProductStock" Type="Self.ProductStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductSize">
+        <PropertyRef Name="ProductSizeID" />
+      </Principal>
+      <Dependent Role="ProductStock">
+        <PropertyRef Name="ProductSizeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductWashing_Washing">
+    <End Role="Washing" Type="Self.Washing" Multiplicity="1" />
+    <End Role="ProductWashing" Type="Self.ProductWashing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Washing">
+        <PropertyRef Name="WashingID" />
+      </Principal>
+      <Dependent Role="ProductWashing">
+        <PropertyRef Name="WashingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Questions_Users">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Region">
+    <End Role="Region" Type="Self.Region" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="RegionID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RegionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FancyStoreEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CategoryLarges" EntityType="Self.CategoryLarge" />
+    <EntitySet Name="CategoryMiddles" EntityType="Self.CategoryMiddle" />
+    <EntitySet Name="CategorySmalls" EntityType="Self.CategorySmall" />
+    <EntitySet Name="Cities" EntityType="Self.City" />
+    <EntitySet Name="Colors" EntityType="Self.Color" />
+    <EntitySet Name="DiscountMethods" EntityType="Self.DiscountMethod" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="EvaluationSamples" EntityType="Self.EvaluationSample" />
+    <EntitySet Name="KeyWords" EntityType="Self.KeyWord" />
+    <EntitySet Name="MyFavorites" EntityType="Self.MyFavorite" />
+    <EntitySet Name="NewsLists" EntityType="Self.NewsList" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="OrderHeaders" EntityType="Self.OrderHeader" />
+    <EntitySet Name="OrderStatusLists" EntityType="Self.OrderStatusList" />
+    <EntitySet Name="PayMethods" EntityType="Self.PayMethod" />
+    <EntitySet Name="Photos" EntityType="Self.Photo" />
+    <EntitySet Name="ProductColors" EntityType="Self.ProductColor" />
+    <EntitySet Name="ProductEvaluations" EntityType="Self.ProductEvaluation" />
+    <EntitySet Name="ProductPhotoes" EntityType="Self.ProductPhoto" />
+    <EntitySet Name="ProductSizes" EntityType="Self.ProductSize" />
+    <EntitySet Name="ProductStocks" EntityType="Self.ProductStock" />
+    <EntitySet Name="ProductWashings" EntityType="Self.ProductWashing" />
+    <EntitySet Name="Questions" EntityType="Self.Question" />
+    <EntitySet Name="Regions" EntityType="Self.Region" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Shippings" EntityType="Self.Shipping" />
+    <EntitySet Name="Sizes" EntityType="Self.Size" />
+    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Washings" EntityType="Self.Washing" />
+    <AssociationSet Name="FK_CategoryM_CategoryL" Association="Self.FK_CategoryM_CategoryL">
+      <End Role="CategoryLarge" EntitySet="CategoryLarges" />
+      <End Role="CategoryMiddle" EntitySet="CategoryMiddles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoryS_CategoryM" Association="Self.FK_CategoryS_CategoryM">
+      <End Role="CategoryMiddle" EntitySet="CategoryMiddles" />
+      <End Role="CategorySmall" EntitySet="CategorySmalls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Region_City" Association="Self.FK_Region_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Region" EntitySet="Regions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductColor_Color" Association="Self.FK_ProductColor_Color">
+      <End Role="Color" EntitySet="Colors" />
+      <End Role="ProductColor" EntitySet="ProductColors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_DiscountMethod" Association="Self.FK_Orders_DiscountMethod">
+      <End Role="DiscountMethod" EntitySet="DiscountMethods" />
+      <End Role="OrderHeader" EntitySet="OrderHeaders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Photo" Association="Self.FK_Employee_Photo">
+      <End Role="Photo" EntitySet="Photos" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employees_Region" Association="Self.FK_Employees_Region">
+      <End Role="Region" EntitySet="Regions" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyFavorite_Users" Association="Self.FK_MyFavorite_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="MyFavorite" EntitySet="MyFavorites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Photo" Association="Self.FK_News_Photo">
+      <End Role="Photo" EntitySet="Photos" />
+      <End Role="NewsList" EntitySet="NewsLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_ProductColor" Association="Self.FK_OrderDetail_ProductColor">
+      <End Role="ProductColor" EntitySet="ProductColors" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_ProductSize" Association="Self.FK_OrderDetail_ProductSize">
+      <End Role="ProductSize" EntitySet="ProductSizes" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+      <End Role="OrderHeader" EntitySet="OrderHeaders" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_PayMethod" Association="Self.FK_Orders_PayMethod">
+      <End Role="PayMethod" EntitySet="PayMethods" />
+      <End Role="OrderHeader" EntitySet="OrderHeaders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Shipping" Association="Self.FK_Orders_Shipping">
+      <End Role="Shipping" EntitySet="Shippings" />
+      <End Role="OrderHeader" EntitySet="OrderHeaders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Status" Association="Self.FK_Orders_Status">
+      <End Role="OrderStatusList" EntitySet="OrderStatusLists" />
+      <End Role="OrderHeader" EntitySet="OrderHeaders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="OrderHeader" EntitySet="OrderHeaders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Questions_Orders" Association="Self.FK_Questions_Orders">
+      <End Role="OrderHeader" EntitySet="OrderHeaders" />
+      <End Role="Question" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPhoto_Photo" Association="Self.FK_ProductPhoto_Photo">
+      <End Role="Photo" EntitySet="Photos" />
+      <End Role="ProductPhoto" EntitySet="ProductPhotoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Photo" Association="Self.FK_User_Photo">
+      <End Role="Photo" EntitySet="Photos" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductStock_ProductColor" Association="Self.FK_ProductStock_ProductColor">
+      <End Role="ProductColor" EntitySet="ProductColors" />
+      <End Role="ProductStock" EntitySet="ProductStocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSize_Size" Association="Self.FK_ProductSize_Size">
+      <End Role="Size" EntitySet="Sizes" />
+      <End Role="ProductSize" EntitySet="ProductSizes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductStock_ProductSize" Association="Self.FK_ProductStock_ProductSize">
+      <End Role="ProductSize" EntitySet="ProductSizes" />
+      <End Role="ProductStock" EntitySet="ProductStocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductWashing_Washing" Association="Self.FK_ProductWashing_Washing">
+      <End Role="Washing" EntitySet="Washings" />
+      <End Role="ProductWashing" EntitySet="ProductWashings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Questions_Users" Association="Self.FK_Questions_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Question" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Region" Association="Self.FK_Users_Region">
+      <End Role="Region" EntitySet="Regions" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Products" EntityType="FancyStoreModel.Product" />
+    <AssociationSet Name="FK_Products_CategoryS" Association="FancyStoreModel.FK_Products_CategoryS">
+      <End Role="CategorySmall" EntitySet="CategorySmalls" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyFavorite_Products" Association="FancyStoreModel.FK_MyFavorite_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="MyFavorite" EntitySet="MyFavorites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Products" Association="FancyStoreModel.FK_OrderDetails_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductEvaluation_Products" Association="FancyStoreModel.FK_ProductEvaluation_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductEvaluation" EntitySet="ProductEvaluations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPhoto_Products" Association="FancyStoreModel.FK_ProductPhoto_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductColor" EntitySet="ProductColors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPhoto_Products1" Association="FancyStoreModel.FK_ProductPhoto_Products1">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductPhoto" EntitySet="ProductPhotoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Supplier" Association="FancyStoreModel.FK_Products_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSize_Products" Association="FancyStoreModel.FK_ProductSize_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductSize" EntitySet="ProductSizes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductStock_Products" Association="FancyStoreModel.FK_ProductStock_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductStock" EntitySet="ProductStocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductWashing_Products" Association="FancyStoreModel.FK_ProductWashing_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductWashing" EntitySet="ProductWashings" />
+    </AssociationSet>
+    <EntitySet Name="VW_EW_CategorySML" EntityType="FancyStoreModel.VW_EW_CategorySML" />
+    <EntitySet Name="VW_EW_OrderDetail" EntityType="FancyStoreModel.VW_EW_OrderDetail" />
+    <EntitySet Name="VW_EW_ProductColor" EntityType="FancyStoreModel.VW_EW_ProductColor" />
+    <EntitySet Name="VW_EW_ProductSize" EntityType="FancyStoreModel.VW_EW_ProductSize" />
+    <EntitySet Name="VW_EW_Supplier" EntityType="FancyStoreModel.VW_EW_Supplier" />
+  </EntityContainer>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Desctiption" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CategorySID" Type="Int32" Nullable="false" />
+    <Property Name="UnitPrice" Type="Int32" Nullable="false" />
+    <Property Name="SupplierID" Type="Int32" />
+    <Property Name="ProductInDate" Type="DateTime" Precision="3" />
+    <Property Name="ProductOutDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CategorySmall" Relationship="FancyStoreModel.FK_Products_CategoryS" FromRole="Product" ToRole="CategorySmall" />
+    <NavigationProperty Name="MyFavorites" Relationship="FancyStoreModel.FK_MyFavorite_Products" FromRole="Product" ToRole="MyFavorite" />
+    <NavigationProperty Name="OrderDetails" Relationship="FancyStoreModel.FK_OrderDetails_Products" FromRole="Product" ToRole="OrderDetail" />
+    <NavigationProperty Name="ProductEvaluations" Relationship="FancyStoreModel.FK_ProductEvaluation_Products" FromRole="Product" ToRole="ProductEvaluation" />
+    <NavigationProperty Name="ProductColors" Relationship="FancyStoreModel.FK_ProductPhoto_Products" FromRole="Product" ToRole="ProductColor" />
+    <NavigationProperty Name="ProductPhotoes" Relationship="FancyStoreModel.FK_ProductPhoto_Products1" FromRole="Product" ToRole="ProductPhoto" />
+    <NavigationProperty Name="Supplier" Relationship="FancyStoreModel.FK_Products_Supplier" FromRole="Product" ToRole="Supplier" />
+    <NavigationProperty Name="ProductSizes" Relationship="FancyStoreModel.FK_ProductSize_Products" FromRole="Product" ToRole="ProductSize" />
+    <NavigationProperty Name="ProductStocks" Relationship="FancyStoreModel.FK_ProductStock_Products" FromRole="Product" ToRole="ProductStock" />
+    <NavigationProperty Name="ProductWashings" Relationship="FancyStoreModel.FK_ProductWashing_Products" FromRole="Product" ToRole="ProductWashing" />
+  </EntityType>
+  <Association Name="FK_Products_CategoryS">
+    <End Type="FancyStoreModel.CategorySmall" Role="CategorySmall" Multiplicity="1" />
+    <End Type="FancyStoreModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategorySmall">
+        <PropertyRef Name="CategorySID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategorySID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyFavorite_Products">
+    <End Type="FancyStoreModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="FancyStoreModel.MyFavorite" Role="MyFavorite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="MyFavorite">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Products">
+    <End Type="FancyStoreModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="FancyStoreModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductEvaluation_Products">
+    <End Type="FancyStoreModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="FancyStoreModel.ProductEvaluation" Role="ProductEvaluation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductEvaluation">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPhoto_Products">
+    <End Type="FancyStoreModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="FancyStoreModel.ProductColor" Role="ProductColor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductColor">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPhoto_Products1">
+    <End Type="FancyStoreModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="FancyStoreModel.ProductPhoto" Role="ProductPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductPhoto">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Supplier">
+    <End Type="FancyStoreModel.Supplier" Role="Supplier" Multiplicity="0..1" />
+    <End Type="FancyStoreModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="SupplierID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="SupplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSize_Products">
+    <End Type="FancyStoreModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="FancyStoreModel.ProductSize" Role="ProductSize" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductSize">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductStock_Products">
+    <End Type="FancyStoreModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="FancyStoreModel.ProductStock" Role="ProductStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductStock">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductWashing_Products">
+    <End Type="FancyStoreModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="FancyStoreModel.ProductWashing" Role="ProductWashing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductWashing">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VW_EW_CategorySML">
+    <Key>
+      <PropertyRef Name="CategorySID" />
+    </Key>
+    <Property Name="CategorySID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="62" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_EW_OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderID" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ColorName" />
+      <PropertyRef Name="SizeName" />
+      <PropertyRef Name="StockQTY" />
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ProductColorID" />
+      <PropertyRef Name="ProductSizeID" />
+      <PropertyRef Name="UnitPrice" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ColorName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SizeName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="OrderQTY" Type="Int32" />
+    <Property Name="StockQTY" Type="Int32" Nullable="false" />
+    <Property Name="Balance" Type="Int32" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductColorID" Type="Int32" Nullable="false" />
+    <Property Name="ProductSizeID" Type="Int32" Nullable="false" />
+    <Property Name="UnitPrice" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VW_EW_ProductColor">
+    <Key>
+      <PropertyRef Name="ProductColorID" />
+      <PropertyRef Name="ColorName" />
+    </Key>
+    <Property Name="ProductColorID" Type="Int32" Nullable="false" />
+    <Property Name="ColorName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_EW_ProductSize">
+    <Key>
+      <PropertyRef Name="ProductSizeID" />
+      <PropertyRef Name="SizeName" />
+    </Key>
+    <Property Name="ProductSizeID" Type="Int32" Nullable="false" />
+    <Property Name="SizeName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_EW_Supplier">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+    </Key>
+    <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

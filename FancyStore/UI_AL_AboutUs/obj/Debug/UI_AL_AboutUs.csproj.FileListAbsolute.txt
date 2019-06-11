@@ -1,0 +1,10 @@
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\UI_AL_AboutUs\bin\Debug\UI_AL_AboutUs.exe.config
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\UI_AL_AboutUs\bin\Debug\UI_AL_AboutUs.exe
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\UI_AL_AboutUs\bin\Debug\UI_AL_AboutUs.pdb
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\UI_AL_AboutUs\obj\Debug\UI_AL_AboutUs.csprojAssemblyReference.cache
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\UI_AL_AboutUs\obj\Debug\UI_AL_AboutUs.AboutUs.resources
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\UI_AL_AboutUs\obj\Debug\UI_AL_AboutUs.Properties.Resources.resources
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\UI_AL_AboutUs\obj\Debug\UI_AL_AboutUs.csproj.GenerateResource.cache
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\UI_AL_AboutUs\obj\Debug\UI_AL_AboutUs.csproj.CoreCompileInputs.cache
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\UI_AL_AboutUs\obj\Debug\UI_AL_AboutUs.exe
+C:\Users\SkyReka\Desktop\G\Fancy-upstream\FancyStore\UI_AL_AboutUs\obj\Debug\UI_AL_AboutUs.pdb
